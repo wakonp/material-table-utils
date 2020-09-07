@@ -1,0 +1,6 @@
+<div *ngIf="!hasContent">
+  <ng-content select="ng-content-alt"></ng-content>
+</div>
+<div #contentWrapper>
+  <ng-content></ng-content>
+</div>

@@ -1,1 +1,54 @@
-<p>simple-table works!</p>
+<description-card>
+  <description-card-content>
+    <p>
+      Can be created easily by using the material schema for a table. The schema includes all necessary imports and
+      creates
+      a datasource class too. On the top there are also demo data entries, so the table does not look that empty.
+    </p>
+    <p>
+      <code>ng g @angular/material --PATH-TO-COMPONENT--</code>
+    </p>
+
+    <span>Pros:</span>
+
+    <ul>
+      <li>Very quick and effectiv for demonstrating the power of schemas</li>
+      <li>Imports Modules</li>
+      <li>Creates Testfiles with Module Imports</li>
+      <li>Adds Sorting</li>
+      <li>Adds Pagination</li>
+      <li>Datasource can be extended with ez</li>
+    </ul>
+    <span>Cons:</span>
+
+    <ul>
+      <li>Cell Templates can not be reused</li>
+      <li>For each table filtering must be recreated</li>
+      <li>Switch to virutal scrolling can not be configured</li>
+    </ul>
+  </description-card-content>
+
+  <description-card-table>
+    <table mat-table class="full-width-table" matSort aria-label="Elements">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="50"
+      [pageSizeOptions]="[25, 50, 100, 250]"></mat-paginator>
+  </description-card-table>
+
+
+</description-card>

@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>{{viewTitle}}</mat-card-title>
+  <mat-card-content>
+    <ng-content select="description-card-content"></ng-content>
+  </mat-card-content>
+  <mat-divider *ngIf="ngContent.hasContent"></mat-divider>
+  <ng-content-checker #ngContent>
+    <ng-content-alt>
+      Under Construction
+    </ng-content-alt>
+    <ng-content select="description-card-table"></ng-content>
+  </ng-content-checker>
+
+</mat-card>

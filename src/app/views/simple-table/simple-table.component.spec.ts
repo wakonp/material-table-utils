@@ -1,17 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { SimpleTableComponent } from './simple-table.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 describe('SimpleTableComponent', () => {
   let component: SimpleTableComponent;
   let fixture: ComponentFixture<SimpleTableComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SimpleTableComponent ]
-    })
-    .compileComponents();
-  });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [SimpleTableComponent],
+      imports: [
+        NoopAnimationsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SimpleTableComponent);
@@ -19,7 +28,7 @@ describe('SimpleTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });
