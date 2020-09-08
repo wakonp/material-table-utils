@@ -1,1 +1,50 @@
-<description-card></description-card>
+<description-card>
+  <description-card-content>
+    <p>
+      Extend the datasource class with a FormControl property. In the template bind the formControl on the datasource
+      property. Add a getFilteredData function and add it to the merged connect Observable. By using the valueChanges
+      attribute, it is possible to use debounceTime and distinctUntilChanged Operators.
+    </p>
+    <p>
+      <code>
+        this.filter.valueChanges.pipe(<br>
+        debounceTime(500),<br>
+        startWith(this.filter.value),<br>
+        distinctUntilChanged(),<br>
+        skip(1)<br>
+        )<br>
+      </code>
+      Using distinctUntilChanged with startWith and skip the first emission for preventing duplicate call of
+      getFilteredData but having the distinct value within the operator for the next emission.
+    </p>
+  </description-card-content>
+
+  <description-card-table>
+
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input type="text" matInput [formControl]="dataSource.filter">
+    </mat-form-field>
+    <table mat-table class="full-width-table" matSort aria-label="Elements">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="50"
+      [pageSizeOptions]="[25, 50, 100, 250]"></mat-paginator>
+  </description-card-table>
+
+
+</description-card>
